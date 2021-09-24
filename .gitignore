@@ -108,3 +108,6 @@ dist
 
 # built version
 dist
+
+# CI
+.gitlab-ci.yml
