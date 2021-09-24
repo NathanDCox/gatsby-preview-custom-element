@@ -1,6 +1,6 @@
 {
   "name": "@simply007/kontent-gatsby-preview-custom-element",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Gatsby preview custom element is watching content changes.",
   "main": "index.js",
   "scripts": {
