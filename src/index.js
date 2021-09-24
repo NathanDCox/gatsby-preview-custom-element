@@ -223,7 +223,7 @@ function initCustomElement() {
 
       console.log("Connection to gatsby opened...");
 
-      CustomElement.getElementValue(config.publishDateElement, (value) => {
+      config.publishDateElement && CustomElement.getElementValue(config.publishDateElement, (value) => {
         const [monthVal, dayVal, yearVal] = new Date(value)
           .toLocaleDateString("en-EN", {
             year: "numeric",
