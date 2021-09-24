@@ -90,6 +90,7 @@ function getPreviewUrl() {
   if ((urlSlugElement && !urlSlug) || !projectId) {
     return null;
   }
+
   return config.previewUrlPattern.replace(urlSlugRegex, urlSlug).replace(langRegex, language).replace(yearRegex, year).replace(monthRegex, month);
 }
 
@@ -241,7 +242,7 @@ function initCustomElement() {
       language = context.variant.codename;
       gatsbyWebHookUrl = config.gatsbyWebHookUrl;
       urlSlugElement = config.urlSlugElement;
-      baseDomain = config.baseDomain;
+      if(config.baseDomain) baseDomain = config.baseDomain;
       if (codename) { // because custom element could be placed to content component - unsupported
         load(!!urlSlugElement);
       }

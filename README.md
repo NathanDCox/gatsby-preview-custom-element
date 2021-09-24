@@ -19,8 +19,9 @@ If you want to use the Gatsby preview custom element in your project in Kentico 
 ```jsonc
 {
     "previewApiKey": "<YOUR PREVIEW API KEY>",
-    "previewUrlPattern": "https://gatby-test-kc-preview/{lang}/{urlslug}",
-    "urlSlugElement": "url_pattern",
+    "previewUrlPattern": "https://gatby-test-kc-preview/{lang}/{year}/{month}/{urlslug}",
+    "urlSlugElement": "url_pattern", //urlSlug Kontent element
+    "publishDateElement": "publish_date", //publish date Date & Time Kontent element
     "gatsbyWebHookUrl": "https://webhook.gatsbyjs.com/hooks/data_source/<GUID>",
     "baseDomain": "https://your-proxy-for-preview-endpoint.com" // default is "https://preview-deliver.kontent.ai"
 }
