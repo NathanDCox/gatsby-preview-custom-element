@@ -11,8 +11,13 @@ var codename = null;
 var id = null;
 var urlSlug = null;
 var projectId = null;
+var year = null;
+var month = null;
 var urlSlugRegex = /{urlslug}/ig;
 var langRegex = /{lang}/ig;
+var yearRegex = /{year}/ig;
+var monthRegex = /{month}/ig;
+
 var gatsbyWebHookUrl = null;
 var baseDomain = 'https://preview-deliver.kontent.ai';
 
@@ -85,7 +90,7 @@ function getPreviewUrl() {
   if ((urlSlugElement && !urlSlug) || !projectId) {
     return null;
   }
-  return config.previewUrlPattern.replace(urlSlugRegex, urlSlug).replace(langRegex, language);
+  return config.previewUrlPattern.replace(urlSlugRegex, urlSlug).replace(langRegex, language).replace(yearRegex, year).replace(monthRegex, month);
 }
 
 function showReady() {
@@ -112,7 +117,14 @@ function getItemUrl() {
   if (!codename || !projectId) {
     return null;
   }
-  return baseDomain + '/' + projectId + '/items?language=' + language + '&system.id=' + id;
+  return (
+    'https://preview-deliver.kontent.ai/' +
+    projectId +
+    "/items?language=" +
+    language +
+    "&system.id=" +
+    id
+  );
 }
 
 function scheduleWaitForPreview(changedElementCodenames) {
@@ -210,6 +222,18 @@ function initCustomElement() {
 
 
       console.log("Connection to gatsby opened...");
+
+      CustomElement.getElementValue(config.publishDateElement, (value) => {
+        const [monthVal, dayVal, yearVal] = new Date(value)
+          .toLocaleDateString("en-EN", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+          })
+          .split("/");
+        month = monthVal;
+        year = yearVal;
+      });
 
       projectId = context.projectId;
       codename = context.item.codename;
